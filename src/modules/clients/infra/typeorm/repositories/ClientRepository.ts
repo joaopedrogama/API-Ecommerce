@@ -15,21 +15,20 @@ export default class ClientRepository implements IClientRepository {
     this.ormRepository = getRepository(Client);
   }
 
-  update(data: IClientDTO, id: number): Promise<UpdateResult> {
-
-
+  async update(data: IClientDTO, id: number): Promise<UpdateResult> {
+    
     const client = this.ormRepository.update(id, data);
 
     return client;
   }
 
-  deleteClient(id: number): Promise<DeleteResult> {
+  async deleteClient(id: number): Promise<DeleteResult> {
 
     return this.ormRepository.delete(id);
 
   }
 
-  getOne(id: number): Promise<Client> {
+  async findById(id: number): Promise<Client> {
     const client = this.ormRepository.findOneOrFail(id);
 
     return client;

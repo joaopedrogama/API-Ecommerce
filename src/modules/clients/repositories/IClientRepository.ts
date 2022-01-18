@@ -15,7 +15,7 @@ export default interface IClientRepository {
 
   get(): Promise<Client[]>;
 
-  getOne(id: number): Promise<Client>;
+  findById(id: number): Promise<Client>;
 
   deleteClient(id: number): Promise<DeleteResult>;
 

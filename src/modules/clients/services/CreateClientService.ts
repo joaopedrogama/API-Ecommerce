@@ -1,7 +1,8 @@
 import IClientDTO from "../dtos/IClientDTO";
 import Client from "../infra/typeorm/entities/Client";
 import ClientRepository from "../infra/typeorm/repositories/ClientRepository";
-import { cpf } from 'cpf-cnpj-validator';
+import { cpf } from "cpf-cnpj-validator";
+import AppError from "../../../shared/errors/AppError";
 
 /**
  * O service terá toda a regra de negócio. Cada service é responsável por
@@ -20,16 +21,16 @@ export default class CreateClientService {
     const client = await clientRepository.create(data);
     const clientes = await clientRepository.get();
 
-    // for (let i = 0; i < clientes.length; i++) {
-    //   if (data.cpf == clientes[i].cpf) {
-    //     return "CPF ja existe";
-    //   }
-    // }
+    for (let i = 0; i < clientes.length; i++) {
+      if (data.cpf == clientes[i].cpf) {
+        throw new AppError("CPF já existe");
+      }
+    }
 
-    // const cpfCliente = data.cpf;
-    // if (!(cpf.isValid(cpfCliente))) {
-    //   return "CPF inválido";
-    // }
+    const cpfCliente = data.cpf;
+    if (!cpf.isValid(cpfCliente)) {
+      throw new AppError("CPF inválido");
+    }
 
     return client;
   }
