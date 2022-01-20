@@ -5,4 +5,6 @@ const routes = Router();
 
 routes.post("/", CategoriesController.create);
 
+routes.get('/', CategoriesController.get);
+
 export default routes;
