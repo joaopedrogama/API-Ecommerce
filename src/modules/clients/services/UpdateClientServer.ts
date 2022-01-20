@@ -6,11 +6,11 @@ import AppError from "../../../shared/errors/AppError";
 
 
 export default class UpdateClientsService {
-  public async execute(data: IClientDTO, id:number): Promise<UpdateResult> {
+  public async execute(data: IClientDTO, id:number): Promise<UpdateResult | AppError> {
     const clientRepository = new ClientRepository();
 
     if (!data.id) {
-      throw new AppError("Precisa do ID do cliente para atualizar");
+      return new AppError("Precisa do ID do cliente para atualizar");
     }
 
     const client = await clientRepository.update(data, id);

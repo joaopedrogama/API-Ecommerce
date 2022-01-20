@@ -15,7 +15,7 @@ import AppError from "../../../shared/errors/AppError";
  * Como um service só tem uma função ele deve ter apenas um método público
  */
 export default class CreateClientService {
-  public async execute(data: IClientDTO): Promise<Client | string> {
+  public async execute(data: IClientDTO): Promise<Client | AppError> {
     const clientRepository = new ClientRepository();
 
     const client = await clientRepository.create(data);
@@ -23,13 +23,13 @@ export default class CreateClientService {
 
     for (let i = 0; i < clientes.length; i++) {
       if (data.cpf == clientes[i].cpf) {
-        throw new AppError("CPF já existe");
+        return new AppError("CPF já existe");
       }
     }
 
     const cpfCliente = data.cpf;
     if (!cpf.isValid(cpfCliente)) {
-      throw new AppError("CPF inválido");
+      return new AppError("CPF inválido");
     }
 
     return client;
