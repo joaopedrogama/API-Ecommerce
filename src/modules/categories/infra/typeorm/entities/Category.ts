@@ -4,11 +4,11 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
-} from "typeorm";
+} from 'typeorm';
 
-@Entity("categorias")
+@Entity('categorias')
 export default class Category {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()
@@ -19,6 +19,4 @@ export default class Category {
 
     @UpdateDateColumn()
     updated_at: Date;
-
-    
 }

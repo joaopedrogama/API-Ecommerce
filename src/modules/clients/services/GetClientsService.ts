@@ -1,6 +1,5 @@
-import IClientDTO from "../dtos/IClientDTO";
-import Client from "../infra/typeorm/entities/Client";
-import ClientRepository from "../infra/typeorm/repositories/ClientRepository";
+import Client from '../infra/typeorm/entities/Client';
+import ClientRepository from '../infra/typeorm/repositories/ClientRepository';
 
 /**
  * O service terá toda a regra de negócio. Cada service é responsável por
@@ -13,11 +12,11 @@ import ClientRepository from "../infra/typeorm/repositories/ClientRepository";
  * Como um service só tem uma função ele deve ter apenas um método público
  */
 export default class GetClientsService {
-  public async execute(): Promise<Client[]> {
-    const clientRepository = new ClientRepository();
+    public async execute(): Promise<Client[]> {
+        const clientRepository = new ClientRepository();
 
-    const client = await clientRepository.get();
+        const client = await clientRepository.get();
 
-    return client;
-  }
+        return client;
+    }
 }

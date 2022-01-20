@@ -4,11 +4,11 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
-} from "typeorm";
+} from 'typeorm';
 
-@Entity("clientes")
+@Entity('clientes')
 export default class Client {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()

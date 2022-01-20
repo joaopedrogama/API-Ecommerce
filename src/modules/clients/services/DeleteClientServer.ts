@@ -1,21 +1,17 @@
-import { DeleteResult } from "typeorm";
-import Client from "../infra/typeorm/entities/Client";
-import ClientRepository from "../infra/typeorm/repositories/ClientRepository";
-import AppError from "../../../shared/errors/AppError";
+import { DeleteResult } from 'typeorm';
+import ClientRepository from '../infra/typeorm/repositories/ClientRepository';
+import AppError from '../../../shared/errors/AppError';
 
 export default class DeleteClientService {
+    public async execute(id: number): Promise<DeleteResult | AppError> {
+        if (!id) {
+            return new AppError('Precisa do ID do cliente para remove-lo');
+        }
 
-  public async execute(id: number): Promise<DeleteResult | AppError> {
+        const clientRepository = new ClientRepository();
 
-    if (!id) {
-      return new AppError("Precisa do ID do cliente para remove-lo");
+        const resutl = await clientRepository.deleteClient(id);
+
+        return resutl;
     }
-      
-    const clientRepository = new ClientRepository();
-
-    const resutl = await clientRepository.deleteClient(id);
-
-    return resutl;
-
-  }
 }

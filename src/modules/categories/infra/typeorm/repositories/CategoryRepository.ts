@@ -1,7 +1,7 @@
-import ICategoryDTO from "../../../dtos/ICategoryDTO";
-import IcategoryRepository from "modules/categories/repositories/ICategoryRepository";
-import { DeleteResult, getRepository, Repository, UpdateResult } from "typeorm";
-import Category from "../entities/Category";
+import ICategoryDTO from '../../../dtos/ICategoryDTO';
+import IcategoryRepository from 'modules/categories/repositories/ICategoryRepository';
+import { DeleteResult, getRepository, Repository, UpdateResult } from 'typeorm';
+import Category from '../entities/Category';
 
 export default class CategoryRepository implements IcategoryRepository {
     private ormRepository: Repository<Category>;

@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import GetCategoryService from "../../../../categories/services/GetCategoryService";
-import CreateCategoryService from "../../../../categories/services/CreateCategoryService";
-import DeleteCategoryService from "../../../../categories/services/DeleteCategoryService";
-import GetOneCategoryService from "../../../../categories/services/GetOneCategoryService";
-import UpdateCategoryService from "../../../../categories/services/UpdateCategoryService";
+import { Request, Response } from 'express';
+import GetCategoryService from '../../../../categories/services/GetCategoryService';
+import CreateCategoryService from '../../../../categories/services/CreateCategoryService';
+import DeleteCategoryService from '../../../../categories/services/DeleteCategoryService';
+import GetOneCategoryService from '../../../../categories/services/GetOneCategoryService';
+import UpdateCategoryService from '../../../../categories/services/UpdateCategoryService';
 
 class CategoriesController {
     async create(request: Request, response: Response) {
@@ -24,8 +24,7 @@ class CategoriesController {
         return response.json(categories);
     }
 
-    async delete(request: Request, response:Response) {
-
+    async delete(request: Request, response: Response) {
         const id = Number(request.params.id);
 
         const deleteCategory = new DeleteCategoryService();
@@ -36,7 +35,6 @@ class CategoriesController {
     }
 
     async getOne(request: Request, response: Response) {
-
         const id = Number(request.params.id);
 
         const getOneCategory = new GetOneCategoryService();
@@ -46,8 +44,7 @@ class CategoriesController {
         return response.json(category);
     }
 
-    async update (request: Request, response: Response) {
-
+    async update(request: Request, response: Response) {
         const id = Number(request.params.id);
 
         const data = request.body;
@@ -57,7 +54,6 @@ class CategoriesController {
         const result = await updateCategory.execute(data, id);
 
         return response.json(result);
-
     }
 }
 
