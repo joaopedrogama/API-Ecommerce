@@ -6,25 +6,13 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 
-@Entity("clientes")
-export default class Client {
+@Entity("categorias")
+export default class Category {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
     @Column()
-    nome: string;
-
-    @Column()
-    cpf: string;
-
-    @Column()
-    email: string;
-
-    @Column()
-    telefone: string;
-
-    @Column()
-    data_nascimento: string;
+    descricao: string;
 
     @CreateDateColumn()
     created_at: Date;
