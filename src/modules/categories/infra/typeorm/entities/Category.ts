@@ -19,4 +19,6 @@ export default class Category {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    
 }

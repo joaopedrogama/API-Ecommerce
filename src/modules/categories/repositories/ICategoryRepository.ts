@@ -1,5 +1,5 @@
 import { UpdateResult, DeleteResult } from "typeorm";
-import ICategoryDTO from "../dtos/IcategoryDTO";
+import ICategoryDTO from "../dtos/ICategoryDTO";
 import Category from "../infra/typeorm/entities/Category";
 
 export default interface IcategoryRepository {
@@ -11,5 +11,5 @@ export default interface IcategoryRepository {
 
     delete(id: number): Promise<DeleteResult>;
 
-    update(data: ICategoryDTO): Promise<UpdateResult>;
+    update(data: ICategoryDTO, id: number): Promise<UpdateResult>;
 }

@@ -1,4 +1,4 @@
 export default interface ICategoryDTO {
-    id?: string;
+    id?: number;
     descricao: string;
 }

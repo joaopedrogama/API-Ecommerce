@@ -1,4 +1,4 @@
-import IcategoryDTO from "modules/categories/dtos/IcategoryDTO";
+import ICategoryDTO from "../../../dtos/ICategoryDTO";
 import IcategoryRepository from "modules/categories/repositories/ICategoryRepository";
 import { DeleteResult, getRepository, Repository, UpdateResult } from "typeorm";
 import Category from "../entities/Category";
@@ -10,21 +10,30 @@ export default class CategoryRepository implements IcategoryRepository {
         this.ormRepository = getRepository(Category);
     }
 
-    async create(data: IcategoryDTO): Promise<Category> {
-        const category = this.ormRepository.create();
+    async create(data: ICategoryDTO): Promise<Category> {
+        const category = this.ormRepository.create(data);
 
         return this.ormRepository.save(category);
     }
-    get(): Promise<Category[]> {
-        throw new Error("Method not implemented.");
+
+    async get(): Promise<Category[]> {
+        const client = await this.ormRepository.find();
+
+        return client;
     }
-    findOne(id: number): Promise<Category> {
-        throw new Error("Method not implemented.");
+    async findOne(id: number): Promise<Category> {
+        const category = this.ormRepository.findOneOrFail(id);
+
+        return category;
     }
-    delete(id: number): Promise<DeleteResult> {
-        throw new Error("Method not implemented.");
+    async delete(id: number): Promise<DeleteResult> {
+        const result = this.ormRepository.delete(id);
+
+        return result;
     }
-    update(data: IcategoryDTO): Promise<UpdateResult> {
-        throw new Error("Method not implemented.");
+    async update(data: ICategoryDTO, id: number): Promise<UpdateResult> {
+        const result = this.ormRepository.update(id, data);
+
+        return result;
     }
 }
