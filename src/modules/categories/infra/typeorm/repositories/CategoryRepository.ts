@@ -17,9 +17,9 @@ export default class CategoryRepository implements IcategoryRepository {
     }
 
     async get(): Promise<Category[]> {
-        const client = await this.ormRepository.find();
+        const category = await this.ormRepository.find();
 
-        return client;
+        return category;
     }
     async findOne(id: number): Promise<Category> {
         const category = this.ormRepository.findOneOrFail(id);
