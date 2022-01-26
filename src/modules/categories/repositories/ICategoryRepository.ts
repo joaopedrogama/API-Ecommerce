@@ -7,7 +7,7 @@ export default interface IcategoryRepository {
 
     get(): Promise<Category[]>;
 
-    findOne(id: number): Promise<Category>;
+    findOne(id: number): Promise<Category | undefined>;
 
     delete(id: number): Promise<DeleteResult>;
 

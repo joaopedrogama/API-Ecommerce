@@ -1,9 +1,9 @@
-import ProductRepository from '../../products/infra/typeorm/repositories/ProductRepository';
+import ProductRepository from '../infra/typeorm/repositories/ProductRepository';
 import Product from '../infra/typeorm/entities/Product';
 import IProductDTO from '../dtos/IProductDTO';
 import AppError from '../../../shared/errors/AppError';
 
-export default class CreateProductServer {
+export default class CreateProductService {
   public async execute(data: IProductDTO): Promise<Product | AppError> {
     if (!data) {
       return new AppError('Necessário dados para fazer o cadastro');
@@ -17,7 +17,7 @@ export default class CreateProductServer {
 
     const repository = new ProductRepository();
 
-    const productCreated = repository.create(data);
+    const productCreated = await repository.create(data);
 
     return productCreated;
   }

@@ -4,7 +4,6 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -30,4 +29,10 @@ export default class Product {
   @ManyToOne(() => Category, (category) => category.produtos)
   @JoinColumn({ name: 'categoria_id' })
   categoria: Category;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

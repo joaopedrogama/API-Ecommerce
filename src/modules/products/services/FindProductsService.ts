@@ -1,4 +1,4 @@
-import ProductRepository from '../../products/infra/typeorm/repositories/ProductRepository';
+import ProductRepository from '../infra/typeorm/repositories/ProductRepository';
 import Product from '../infra/typeorm/entities/Product';
 
 export default class FindProductService {
