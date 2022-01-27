@@ -1,34 +1,39 @@
+import Pedido from '../../../../pedidos/infra/typeorm/entities/Pedido';
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('clientes')
 export default class Client {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
-    @Column()
-    nome: string;
+  @Column()
+  nome: string;
 
-    @Column()
-    cpf: string;
+  @Column()
+  cpf: string;
 
-    @Column()
-    email: string;
+  @OneToMany(() => Pedido, (Pedido) => Pedido.cliente)
+  pedidos: Pedido[];
 
-    @Column()
-    telefone: string;
+  @Column()
+  email: string;
 
-    @Column()
-    data_nascimento: string;
+  @Column()
+  telefone: string;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @Column()
+  data_nascimento: string;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
