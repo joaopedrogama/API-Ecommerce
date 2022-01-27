@@ -5,10 +5,13 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Product from '../../../../products/infra/typeorm/entities/Product';
 
 @Entity('pedidos')
 export default class Pedido {
@@ -21,6 +24,10 @@ export default class Pedido {
   @ManyToOne(() => Client, (client) => client.pedidos)
   @JoinColumn({ name: 'cliente_id' })
   cliente: Client;
+
+  @ManyToMany(() => Product)
+  @JoinTable({name: 'pedido_produto',})
+  produtos: Product[];
 
   @Column()
   data: Date;
