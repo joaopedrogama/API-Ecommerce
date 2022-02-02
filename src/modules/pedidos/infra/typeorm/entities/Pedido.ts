@@ -30,19 +30,19 @@ export default class Pedido {
   produtos: Product[];
 
   @Column()
-  data: Date;
+  data: string;
 
   @Column()
   status: string;
 
   @Column()
-  forma_pagamento: number;
+  forma_pagamento: string;
 
   @Column()
   valor: number;
 
   @Column()
-  deconto: number;
+  desconto: number;
 
   @CreateDateColumn()
   created_at: Date;

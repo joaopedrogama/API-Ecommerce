@@ -19,18 +19,18 @@ export default class CreateClientService {
         const clientRepository = new ClientRepository();
 
         const client = await clientRepository.create(data);
-        const clientes = await clientRepository.get();
+        // const clientes = await clientRepository.get();
 
-        for (let i = 0; i < clientes.length; i++) {
-            if (data.cpf == clientes[i].cpf) {
-                return new AppError('CPF já existe');
-            }
-        }
+        // for (let i = 0; i < clientes.length; i++) {
+        //     if (data.cpf == clientes[i].cpf) {
+        //         return new AppError('CPF já existe');
+        //     }
+        // }
 
-        const cpfCliente = data.cpf;
-        if (!cpf.isValid(cpfCliente)) {
-            return new AppError('CPF inválido');
-        }
+        // const cpfCliente = data.cpf;
+        // if (!cpf.isValid(cpfCliente)) {
+        //     return new AppError('CPF inválido');
+        // }
 
         return client;
     }

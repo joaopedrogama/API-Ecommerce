@@ -1,5 +1,4 @@
 import {
-  Column,
   MigrationInterface,
   QueryRunner,
   Table,
@@ -7,9 +6,9 @@ import {
 } from 'typeorm';
 import { ForeignKeyMetadata } from 'typeorm/metadata/ForeignKeyMetadata';
 
-export class CreatePedidos1643309363664 implements MigrationInterface {
+export class CreateOrder1643757119998 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.createTable(
+    await queryRunner.createTable(
       new Table({
         name: 'pedidos',
         columns: [
@@ -27,28 +26,28 @@ export class CreatePedidos1643309363664 implements MigrationInterface {
           },
           {
             name: 'data',
-            type: 'date',
-            isNullable: true,
+            type: 'varchar',
+            isNullable: false,
           },
           {
             name: 'status',
             type: 'varchar',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'forma_pagamento',
             type: 'varchar',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'valor',
             type: 'float',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'desconto',
             type: 'float',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'created_at',
@@ -63,8 +62,10 @@ export class CreatePedidos1643309363664 implements MigrationInterface {
         ],
       })
     );
+
     await queryRunner.createForeignKey(
       'pedidos',
+
       new TableForeignKey({
         columnNames: ['cliente_id'],
         referencedColumnNames: ['id'],

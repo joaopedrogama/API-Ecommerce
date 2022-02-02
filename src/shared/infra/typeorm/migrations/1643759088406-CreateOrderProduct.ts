@@ -1,4 +1,3 @@
-import { create } from 'domain';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreatePedidoProduto1643324454994 implements MigrationInterface {
@@ -10,10 +9,12 @@ export class CreatePedidoProduto1643324454994 implements MigrationInterface {
           {
             name: 'pedido_id',
             type: 'int',
+            isPrimary: true,
           },
           {
             name: 'produto_id',
             type: 'int',
+            isPrimary: true,
           },
         ],
         foreignKeys: [

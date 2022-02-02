@@ -1,54 +1,54 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateClients1641853995392 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "clientes",
+        name: 'clientes',
         columns: [
           {
-            name: "id",
-            type: "int",
+            name: 'id',
+            type: 'int',
             isGenerated: true,
             isPrimary: true,
-            generationStrategy: "increment",
+            generationStrategy: 'increment',
           },
           {
-            name: "nome",
-            type: "varchar",
+            name: 'nome',
+            type: 'varchar',
             isNullable: false,
           },
           {
-            name: "cpf",
-            type: "varchar",
+            name: 'cpf',
+            type: 'varchar',
             isNullable: false,
           },
           {
-            name: "email",
-            type: "varchar",
+            name: 'email',
+            type: 'varchar',
             isNullable: false,
           },
           {
-            name: "telefone",
-            type: "varchar",
-            length: "20",
+            name: 'telefone',
+            type: 'varchar',
+            length: '20',
             isNullable: false,
           },
           {
-            name: "data_nascimento",
-            type: "varchar",
-            length: "150",
+            name: 'data_nascimento',
+            type: 'varchar',
+            length: '150',
             isNullable: false,
           },
           {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       })
@@ -56,6 +56,6 @@ export default class CreateClients1641853995392 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("clientes");
+    await queryRunner.dropTable('clientes');
   }
 }
