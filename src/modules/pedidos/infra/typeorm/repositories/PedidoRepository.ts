@@ -12,13 +12,13 @@ export default class PedidoRepository implements IPedidoRepository {
     }
 
     async clientOrders(id: number): Promise<Pedido[]> {
-        const pedido = await this.ormReposotory.find({
+        const pedidos = await this.ormReposotory.find({
             where: {
                 cliente_id: id,
             },
         });
 
-        return pedido;
+        return pedidos;
     }
 
     async findOne(id: number): Promise<Pedido | undefined> {

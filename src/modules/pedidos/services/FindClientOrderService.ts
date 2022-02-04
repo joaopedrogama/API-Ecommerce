@@ -1,4 +1,4 @@
-import AppError from 'shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import Pedido from '../infra/typeorm/entities/Pedido';
 import PedidoRepository from '../infra/typeorm/repositories/PedidoRepository';
 

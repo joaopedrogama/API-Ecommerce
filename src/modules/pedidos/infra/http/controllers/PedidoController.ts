@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import FindOrderService from '../../../services/FindOrderService';
 import CreateOrderService from '../../../services/CreateOrderService';
-import { Repository } from 'typeorm';
 import FindClientOrderService from '../../../services/FindClientOrderService';
 
 class PedidoController {
@@ -26,7 +25,7 @@ class PedidoController {
     }
 
     async findClientOrder(request: Request, response: Response) {
-        const id = Number(request.body.id);
+        const id = Number(request.body.cliente_id);
 
         const clientOrderService = new FindClientOrderService();
 
