@@ -4,7 +4,7 @@ import Pedido from '../infra/typeorm/entities/Pedido';
 export default interface IPedidoRepository {
   doOrder(data: IPedidoDTO): Promise<Pedido>;
 
-  clientOrders(clientId: number): Promise<Pedido[]>;
+  clientOrders(id: number): Promise<Pedido[]>;
 
-  findOne(): Promise<Pedido>;
+  findOne(id: number): Promise<Pedido | undefined>;
 }
