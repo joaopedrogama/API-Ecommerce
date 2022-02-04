@@ -4,7 +4,7 @@ export default class IPedidoDTO {
   id?: number;
   cliente_id?: number;
   data: string;
-  Status: string;
+  status: string;
   produtos: Product[];
   forma_pagamento: string;
   valor: number;

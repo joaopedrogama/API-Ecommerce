@@ -4,7 +4,6 @@ import {
   Table,
   TableForeignKey,
 } from 'typeorm';
-import { ForeignKeyMetadata } from 'typeorm/metadata/ForeignKeyMetadata';
 
 export class CreateOrder1643757119998 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
