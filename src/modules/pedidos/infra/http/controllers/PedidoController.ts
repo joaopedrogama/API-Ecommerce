@@ -25,7 +25,7 @@ class PedidoController {
     }
 
     async findClientOrder(request: Request, response: Response) {
-        const id = Number(request.body.cliente_id);
+        const id = Number(request.params.id);
 
         const clientOrderService = new FindClientOrderService();
 

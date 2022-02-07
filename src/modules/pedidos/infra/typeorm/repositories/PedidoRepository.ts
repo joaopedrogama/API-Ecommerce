@@ -1,8 +1,13 @@
 import IPedidoDTO from '../../../dtos/IPedidoDTO';
 import IPedidoRepository from '../../../repositories/IPedidoRepository';
 import Product from '../../../../products/infra/typeorm/entities/Product';
-import { getRepository, Repository } from 'typeorm';
+import {
+    AlreadyHasActiveConnectionError,
+    getRepository,
+    Repository,
+} from 'typeorm';
 import Pedido from '../entities/Pedido';
+import ProductRepository from 'modules/products/infra/typeorm/repositories/ProductRepository';
 
 export default class PedidoRepository implements IPedidoRepository {
     private ormReposotory: Repository<Pedido>;
@@ -17,7 +22,6 @@ export default class PedidoRepository implements IPedidoRepository {
                 cliente_id: id,
             },
         });
-
         return pedidos;
     }
 
@@ -30,31 +34,36 @@ export default class PedidoRepository implements IPedidoRepository {
     }
 
     async doOrder(data: IPedidoDTO): Promise<Pedido> {
+        var valorTotal: number = 0;
+
+        const repositoryProduct = getRepository(Product);
+
+        for (let i = 0; i < data.produtos.length; i++) {
+            const produtoCliente = data.produtos[i];
+
+            valorTotal += produtoCliente.preco * produtoCliente.quantidade;
+
+            const produto = await repositoryProduct.findOneOrFail(
+                produtoCliente.id
+            );
+
+            produto.quantidade = produto.quantidade - produtoCliente.quantidade;
+
+            repositoryProduct.save(produto);
+        }
+
+        data.valor = valorTotal - data.desconto;
+
         const pedido = this.ormReposotory.create(data);
 
         return await this.ormReposotory.save(pedido);
     }
 
-    async verificaEstoque(data: IPedidoDTO): Promise<Boolean> {
-        const order = data.produtos;
-
+    async verificaEstoque(): Promise<Product[]> {
         const repositoryProduct = getRepository(Product);
 
         const products = await repositoryProduct.find();
 
-        for (let index = 0; index < order.length; index++) {
-            const orderProduct = order[index];
-
-            for (let j = 0; j < products.length; j++) {
-                const product = products[j];
-
-                if (orderProduct.nome == product.nome) {
-                    if (product.quantidade < orderProduct.quantidade) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
+        return products;
     }
 }

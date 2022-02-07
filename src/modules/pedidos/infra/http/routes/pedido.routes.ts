@@ -7,6 +7,6 @@ routes.post('/', PedidoController.create);
 
 routes.get('/', PedidoController.findOne);
 
-routes.get('/', PedidoController.findClientOrder);
+routes.get('/:id', PedidoController.findClientOrder);
 
 export default routes;
