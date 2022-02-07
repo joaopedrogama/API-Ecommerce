@@ -1,13 +1,8 @@
 import IPedidoDTO from '../../../dtos/IPedidoDTO';
 import IPedidoRepository from '../../../repositories/IPedidoRepository';
 import Product from '../../../../products/infra/typeorm/entities/Product';
-import {
-    AlreadyHasActiveConnectionError,
-    getRepository,
-    Repository,
-} from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import Pedido from '../entities/Pedido';
-import ProductRepository from 'modules/products/infra/typeorm/repositories/ProductRepository';
 
 export default class PedidoRepository implements IPedidoRepository {
     private ormReposotory: Repository<Pedido>;
