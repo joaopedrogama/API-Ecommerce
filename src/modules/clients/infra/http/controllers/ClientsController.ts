@@ -23,8 +23,6 @@ class ClientsController {
     }
 
     async show(request: Request, response: Response) {
-        const data = request.body;
-
         const getClients = new GetClientsServer();
 
         const clients = await getClients.execute();
@@ -55,11 +53,11 @@ class ClientsController {
     async update(request: Request, response: Response) {
         const data = request.body;
 
-        const id = Number(request.params.id);
+        const id = Number(request.body.id);
 
         const updateClient = new UpdateClientServer();
 
-        const client = updateClient.execute(data, id);
+        const client = await updateClient.execute(data, id);
 
         return response.json(client);
     }

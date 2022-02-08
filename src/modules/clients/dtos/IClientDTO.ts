@@ -4,7 +4,7 @@
 export default interface IClientDTO {
     id?: number; // id é opcional (no cadastro não precisa, mas na ediçao sim)
     nome: string;
-    cpf: string;
+    cpf?: string;
     email?: string;
     telefone: string;
     data_nascimento: string;
