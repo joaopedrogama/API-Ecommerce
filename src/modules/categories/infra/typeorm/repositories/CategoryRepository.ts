@@ -17,7 +17,9 @@ export default class CategoryRepository implements IcategoryRepository {
     }
 
     async get(): Promise<Category[]> {
-        const category = await this.ormRepository.find();
+        const category = await this.ormRepository.find({
+            relations: ['produtos']
+        });
 
         return category;
     }

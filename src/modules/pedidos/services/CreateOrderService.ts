@@ -1,3 +1,5 @@
+import Product from '../../products/infra/typeorm/entities/Product';
+import { getRepository } from 'typeorm';
 import AppError from '../../../shared/errors/AppError';
 import IPedidoDTO from '../dtos/IPedidoDTO';
 import Pedido from '../infra/typeorm/entities/Pedido';
@@ -48,6 +50,26 @@ export default class CreateOrderService {
                 }
             }
         }
+
+        var valorTotal: number = 0;
+
+        const repositoryProduct = getRepository(Product);
+
+        for (let i = 0; i < data.produtos.length; i++) {
+            const produtoCliente = data.produtos[i];
+
+            valorTotal += produtoCliente.preco * produtoCliente.quantidade;
+
+            const produto = await repositoryProduct.findOneOrFail(
+                produtoCliente.id
+            );
+
+            produto.quantidade = produto.quantidade - produtoCliente.quantidade;
+
+            repositoryProduct.save(produto);
+        }
+
+        data.valor = valorTotal - data.desconto;
 
         return await pedidoRepository.doOrder(data);
     }

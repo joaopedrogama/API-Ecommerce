@@ -29,26 +29,6 @@ export default class PedidoRepository implements IPedidoRepository {
     }
 
     async doOrder(data: IPedidoDTO): Promise<Pedido> {
-        var valorTotal: number = 0;
-
-        const repositoryProduct = getRepository(Product);
-
-        for (let i = 0; i < data.produtos.length; i++) {
-            const produtoCliente = data.produtos[i];
-
-            valorTotal += produtoCliente.preco * produtoCliente.quantidade;
-
-            const produto = await repositoryProduct.findOneOrFail(
-                produtoCliente.id
-            );
-
-            produto.quantidade = produto.quantidade - produtoCliente.quantidade;
-
-            repositoryProduct.save(produto);
-        }
-
-        data.valor = valorTotal - data.desconto;
-
         const pedido = this.ormReposotory.create(data);
 
         return await this.ormReposotory.save(pedido);
